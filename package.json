@@ -1,0 +1,32 @@
+{
+  "name": "epic-component",
+  "version": "0.1.0",
+  "description": "Create stateful React components that are pure with regard to their props and state.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/epixode/epic-component.git"
+  },
+  "keywords": [
+    "react",
+    "components",
+    "pure"
+  ],
+  "author": "epixode",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/epixode/epic-component/issues"
+  },
+  "homepage": "https://github.com/epixode/epic-component#readme",
+  "peerDependencies": {
+    "react": "^0.14.6"
+  },
+  "devDependencies": {
+    "babel-plugin-transform-object-rest-spread": "^6.1.18",
+    "babel-preset-es2015": "^6.3.13",
+    "babel-preset-react": "^6.3.13"
+  }
+}
