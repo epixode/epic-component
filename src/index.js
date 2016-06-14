@@ -18,7 +18,12 @@ export default function (factory, getInitialState) {
       try {
         return originalRender();
       } catch (ex) {
-        return <div className="epic-fail">{ex.toString()}</div>;
+        return (
+          <div className="epic-fail">
+            <div>{ex.toString()}</div>
+            <pre>{ex.stack}</pre>
+          </div>
+        );
       }
     };
     return self;
