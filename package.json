@@ -23,7 +23,7 @@
   },
   "homepage": "https://github.com/epixode/epic-component#readme",
   "peerDependencies": {
-    "react": "^0.14.6"
+    "react": "^15.0.1"
   },
   "devDependencies": {
     "babel-cli": "^6.4.5",
