@@ -1,14 +1,16 @@
+
 import React from 'react';
 
-export default function (factory) {
-  return function (props, context) {
-    const self = {
-      ...React.PureComponent.prototype,
-      props,
-      context
-    };
-    factory(self);
-    // react 15 error handling
+export default function (init) {
+  return function (props, context, updater) {
+    const self = Object.create(React.PureComponent.prototype);
+    self.props = props;
+    self.context = context;
+    self.updater = updater; // || ...
+    self.state = null;
+    // Call the init function on the fresh instance.
+    init(self);
+    // Add react-15 error handling.
     const originalRender = self.render;
     self.unstable_handleError = function (ex) {
       this.setState({error: ex});
