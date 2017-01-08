@@ -1,6 +1,6 @@
 {
   "name": "epic-component",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Create stateful React components that are pure with regard to their props and state.",
   "main": "lib/index.js",
   "scripts": {
