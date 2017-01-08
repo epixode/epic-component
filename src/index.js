@@ -14,14 +14,17 @@ export default function (factory) {
       this.setState({error: ex});
     };
     self.render = function () {
-      const ex = self.state.error;
-      if (ex) {
-        return (
-          <div className="epic-fail">
-            <div>{ex.toString()}</div>
-            <pre>{ex.stack}</pre>
-          </div>
-        );
+      const state = self.state;
+      if (state !== null) {
+        const ex = state.error;
+        if (ex) {
+          return (
+            <div className="epic-fail">
+              <div>{ex.toString()}</div>
+              <pre>{ex.stack}</pre>
+            </div>
+          );
+        }
       }
       return originalRender();
     };
