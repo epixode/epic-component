@@ -1,23 +1,21 @@
 import React from 'react';
-import * as PureRenderMixin from 'react/lib/ReactComponentWithPureRenderMixin';
 
-export default function (factory, getInitialState) {
+export default function (factory) {
   return function (props, context) {
     const self = {
-      ...React.Component.prototype,
-      ...PureRenderMixin,
+      ...React.PureComponent.prototype,
       props,
       context
     };
-    if (getInitialState !== undefined)
-      self.state = getInitialState(self);
     factory(self);
-    // Wrap an exception handler around the render function.
+    // react 15 error handling
     const originalRender = self.render;
+    self.unstable_handleError = function (ex) {
+      this.setState({error: ex});
+    };
     self.render = function () {
-      try {
-        return originalRender();
-      } catch (ex) {
+      const ex = self.state.error;
+      if (ex) {
         return (
           <div className="epic-fail">
             <div>{ex.toString()}</div>
@@ -25,6 +23,7 @@ export default function (factory, getInitialState) {
           </div>
         );
       }
+      return originalRender();
     };
     return self;
   };
