@@ -13,6 +13,10 @@ export default function (init, staticProps) {
     self.context = context;
     self.updater = updater; // || ...
     self.state = null;
+    // Call getInitialState, if set on the component.
+    if (typeof Constructor.getInitialState === 'function') {
+      self.state = Constructor.getInitialState(props);
+    }
     // Call the init function on the fresh instance.
     init(self);
     // Add react-15 error handling.
