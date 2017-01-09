@@ -6,7 +6,7 @@ function identity (x) {
   return x;
 };
 
-export default function (init) {
+export default function (init, staticProps) {
   var Constructor = identity(function (props, context, updater) {
     const self = Object.create(React.PureComponent.prototype);
     self.props = props;
@@ -37,6 +37,8 @@ export default function (init) {
     };
     return self;
   });
+
+  Object.assign(Constructor, staticProps);
 
   return Constructor;
 };
