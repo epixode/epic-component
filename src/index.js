@@ -1,8 +1,13 @@
 
 import React from 'react';
 
+// Hack to avoid Constructor.name being set, see React's createClass.
+function identity (x) {
+  return x;
+};
+
 export default function (init) {
-  return function (props, context, updater) {
+  var Constructor = identity(function (props, context, updater) {
     const self = Object.create(React.PureComponent.prototype);
     self.props = props;
     self.context = context;
@@ -31,5 +36,7 @@ export default function (init) {
       return originalRender();
     };
     return self;
-  };
+  });
+
+  return Constructor;
 };
