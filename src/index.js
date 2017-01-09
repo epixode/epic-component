@@ -22,8 +22,11 @@ export default function (init, staticProps) {
     // Add react-15 error handling.
     const originalRender = self.render;
     self.unstable_handleError = function (ex) {
-      this.setState({error: ex});
+      // See https://github.com/facebook/react/issues/2461
+      /* this.setState({error: ex}); */
+      console.error(ex);
     };
+    /*
     self.render = function () {
       const state = self.state;
       if (state !== null) {
@@ -39,6 +42,7 @@ export default function (init, staticProps) {
       }
       return originalRender();
     };
+    */
     return self;
   });
 
